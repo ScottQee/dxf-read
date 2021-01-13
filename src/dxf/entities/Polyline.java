@@ -14,8 +14,16 @@ public class Polyline extends Entity {
     }
     private List<Vertex> pointList = new ArrayList();
 
-    public List<Vertex> getPointList() {
+    public List<Vertex> getVPointList() {
         return pointList;
+    }
+
+    public List<String[]> getPointList() {
+        List<String[]> points = new ArrayList<>();
+        for (Vertex v : pointList){
+            points.add(new String[]{v.getPointX(),v.getPointY()});
+        };
+        return points;
     }
 
     public void setPointList(List<Vertex> pointList) {

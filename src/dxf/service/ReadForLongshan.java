@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Read {
+public class ReadForLongshan {
     public List<Point> pointList;
     public List<Circle> circleList;
     public List<Line> lineList;
@@ -25,7 +25,7 @@ public class Read {
     private BufferedReader br;
     private String[] code_data = new String[2];
 
-    public Read(File f) {
+    public ReadForLongshan(File f) {
         pointList = new ArrayList<>();
         circleList = new ArrayList<>();
         lineList = new ArrayList<>();
@@ -477,7 +477,7 @@ public class Read {
                 }
                 vertex.addData(new Data(Integer.parseInt(code_data[0]),code_data[1]));
             }while (!code_data[0].equals("0"));
-            polyline.getPointList().add(vertex);
+            polyline.getVPointList().add(vertex);
             if (polyline.getLayer().equals("居民地") || polyline.getLayer().equals("JZD")){
                 polyline.getPointList().add(polyline.getPointList().get(0));
             }
