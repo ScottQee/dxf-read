@@ -1,19 +1,21 @@
 package dxf;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Layer extends Table{
     private String value; //2
     private String color; //62
     private String LTypeName; //6
-    private List<Entity> entities = new ArrayList<>(); //当前图层下的图形
+    private Map<String,Entity> entities = new HashMap<>(); //当前图层下的图形
 
-    public List<Entity> getEntities() {
+    public Map<String,Entity> getEntities() {
         return entities;
     }
 
-    public void setEntities(List<Entity> entities) {
+    public void setEntities(Map<String,Entity> entities) {
         this.entities = entities;
     }
 
