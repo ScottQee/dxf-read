@@ -1,6 +1,6 @@
 package math;
 
-import dxf.entities.Point;
+import dxfRead.entities.Point;
 
 import java.util.List;
 
@@ -47,6 +47,27 @@ public class MathUtil {
         {
             if ((Double.parseDouble(pointList.get(i)[1]) > testY) != (Double.parseDouble(pointList.get(j)[1]) > testY) &&
                     (testX < (Double.parseDouble(pointList.get(j)[0]) - Double.parseDouble(pointList.get(i)[0])) * (testY - Double.parseDouble(pointList.get(i)[1])) / (Double.parseDouble(pointList.get(j)[1]) - Double.parseDouble(pointList.get(i)[1])) + Double.parseDouble(pointList.get(i)[0])))
+            {
+                result = !result;
+            }
+        }
+        return result;
+    }
+    /**
+     * 判断多边形是否包含某个点
+     * @param testX 点X
+     * @param testY 点Y
+     * @param pointList 多边形点集合
+     * @return
+     */
+    public static boolean contain(double testX, double testY, List<double[]> pointList){
+        int i;
+        int j;
+        boolean result = false;
+        for (i = 0, j = pointList.size() - 1; i < pointList.size(); j = i++)
+        {
+            if ((pointList.get(i)[1] > testY) != (pointList.get(j)[1] > testY) &&
+                    (testX < (pointList.get(j)[0] - pointList.get(i)[0]) * (testY - pointList.get(i)[1]) / (pointList.get(j)[1] - pointList.get(i)[1]) + pointList.get(i)[0]))
             {
                 result = !result;
             }
