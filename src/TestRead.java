@@ -1,7 +1,7 @@
-import dxfRead.Entity;
-import dxfRead.Layer;
-import dxfRead.entities.*;
-import dxfRead.service.DxfMultiRead;
+import dxf.Entity;
+import dxf.Layer;
+import dxf.entities.*;
+import dxf.service.DxfMultiRead;
 import math.Clipping;
 import math.MathUtil;
 import model.ResultModel;

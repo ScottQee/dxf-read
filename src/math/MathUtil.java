@@ -1,6 +1,6 @@
 package math;
 
-import dxfRead.entities.Point;
+import dxf.entities.Point;
 
 import java.util.List;
 
