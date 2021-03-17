@@ -26,7 +26,7 @@ public class Arc extends Entity {
      *  圆弧角度(startAngle,endAngle)
      */
     public Arc() {
-
+        super("ARC","0");
     }
     private final String AcDbCircle = "AcDbCircle";
     private String centerX; //10

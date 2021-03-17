@@ -20,6 +20,7 @@ public class Point extends Entity {
      * 点坐标(pointX,pointY,pointZ)
      */
     public Point() {
+        super("POINT","0");
     }
     private final String AcDbPoint = "AcDbPoint";
 

@@ -26,6 +26,7 @@ public class Text extends Entity {
      * 旋转角度(angle)
      */
     public Text() {
+        super("TEXT","0");
     }
     private final String AcDbText = "AcDbText";
 

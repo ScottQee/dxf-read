@@ -124,12 +124,6 @@ public class Document {
     }
     public static void main(String[] args) throws IOException {
         Document document = new Document();
-        Circle circle = new Circle("0");
-        circle.setCenterX("1.0");
-        circle.setCenterY("3.0");
-        circle.setCenterZ("0.0");
-        circle.setRadius("5.5");
-        document.addEntity(circle);
         Text text = new Text("0");
         text.setPointX("1.0");
         text.setPointY("3.0");

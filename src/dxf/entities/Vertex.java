@@ -8,6 +8,7 @@ public class Vertex extends Entity {
     }
 
     public Vertex() {
+        super("VERTEX","0");
     }
     private String pointX; //10
     private String pointY; //20

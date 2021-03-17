@@ -21,6 +21,7 @@ public class Line extends Entity {
      * 起点(startX,startY,startZ)，终点(endX,endY,endZ)
      */
     public Line() {
+        super("LINE","0");
     }
     private final String AcDbLine = "AcDbLine";
 

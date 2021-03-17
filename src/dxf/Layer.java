@@ -35,6 +35,9 @@ public class Layer extends Table{
     }
     public Layer() {
         super();
+        this.value = "1";
+        this.color = "1";
+        this.LTypeName = "Continuous";
     }
 
     @Override

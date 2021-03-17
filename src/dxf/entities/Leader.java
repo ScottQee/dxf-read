@@ -8,5 +8,6 @@ public class Leader extends Entity {
     }
 
     public Leader() {
+        super("LEADER","0");
     }
 }

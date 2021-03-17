@@ -18,6 +18,7 @@ public class Hatch extends Entity {
     }
 
     public Hatch() {
+        super("HATCH","0");
     }
     private final String AcDbHatch = "AcDbHatch";
 

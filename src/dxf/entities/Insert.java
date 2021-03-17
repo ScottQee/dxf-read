@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Insert extends Entity {
     public Insert() {
+        super("INSERT","0");
     }
 
     public Insert(String name, String layer) {

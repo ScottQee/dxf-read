@@ -4,6 +4,7 @@ import dxf.Entity;
 
 public class Helix extends Entity {
     public Helix() {
+        super("HELIX","0");
     }
 
     public Helix(String name, String layer) {

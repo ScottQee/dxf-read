@@ -8,6 +8,7 @@ public class Ellipse extends Entity {
     }
 
     public Ellipse() {
+        super("ELLIPSE","0");
     }
     private final String AcDbEllipse = "AcDbEllipse";
     private String centerX; //10

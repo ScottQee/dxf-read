@@ -11,6 +11,7 @@ public class Polyline extends Entity {
     }
 
     public Polyline() {
+        super("POLYLINE","0");
     }
     private List<Vertex> pointList = new ArrayList<>();
     private List<String[]> points = new ArrayList<>();

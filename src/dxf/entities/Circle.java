@@ -13,7 +13,9 @@ public class Circle extends Entity {
      *  圆心（centerX,centerY,centerZ)
      *  半径(radius)
      */
-    public Circle(){}
+    public Circle(){
+        super("CIRCLE","0");
+    }
 
     /**
      *  圆弧图形
