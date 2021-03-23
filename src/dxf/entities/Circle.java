@@ -99,6 +99,7 @@ public class Circle extends Entity {
     public String toDxfString() {
         StringBuilder s = new StringBuilder(super.toDxfString());
         s.append("100\nAcDbCircle\n");
+        s.append("39\n100\n");
         s.append("10\n").append(centerX).append("\n");
         s.append("20\n").append(centerY).append("\n");
         s.append("30\n").append(centerZ).append("\n");
