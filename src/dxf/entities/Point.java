@@ -22,6 +22,19 @@ public class Point extends Entity {
     public Point() {
         super("POINT","0");
     }
+    public Point(String[] point,String layer) throws Exception {
+        super("POINT",layer);
+        if (point.length > 3 || point.length < 2){
+            throw new Exception("数据出错");
+        }
+        pointX = point[0];
+        pointY = point[1];
+        if (point.length == 3){
+            pointZ = point[2];
+        } else {
+            pointZ = "0";
+        }
+    }
     private final String AcDbPoint = "AcDbPoint";
 
     public String getAcDbPoint() {

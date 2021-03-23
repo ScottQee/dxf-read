@@ -1,6 +1,16 @@
 package dxf;
 
 public class ACI_Color {
+   public static String Default = "0";
+   public static String Red = "1";
+   public static String Yellow = "2";
+   public static String Green = "3";
+   public static String Cyan = "4";
+   public static String Blue = "5";
+   public static String Magenta = "6";
+   public static String White = "7";
+   public static String DarkGrey = "8";
+   public static String LightGrey = "9";
    public static RGB[] CadColor = new RGB[]{
            new RGB(255,255,255),
            new RGB(255,  0,  0), new RGB(255,255,  0), new RGB(  0,255,  0), new RGB(  0,255,255), new RGB(  0,  0,255),   // 5
@@ -55,6 +65,15 @@ public class ACI_Color {
            new RGB(127,  0, 31), new RGB(127, 63, 79), new RGB( 76,  0, 19), new RGB( 76, 38, 47), new RGB( 51, 51, 51),   // 250
            new RGB( 91, 91, 91), new RGB(132,132,132), new RGB(173,173,173), new RGB(214,214,214), new RGB(255,255,255)    // 255
    };
+   public static String getColorNumber(RGB color){
+      for (int i = 0 ;i < CadColor.length; i++){
+         RGB rgb = CadColor[i];
+         if (rgb.equals(color)){
+            return  String.valueOf(i);
+         }
+      }
+      return "0";
+   }
 
 }
 

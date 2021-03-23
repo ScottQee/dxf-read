@@ -21,8 +21,8 @@ public class Entity extends Element{
 
     protected String handle;
     protected String layer = "0";
-    protected String lineType;
-    protected String color = "1";
+    protected String lineType = "Continuous";
+    protected String color = "0";
     protected String lineScale;
     protected final String AcDbEntity = "AcDbEntity";
 
@@ -53,7 +53,7 @@ public class Entity extends Element{
     public String getLineScale() {
         return lineScale;
     }
-
+    @Deprecated
     public void setLineScale(String lineScale) {
         this.lineScale = lineScale;
     }

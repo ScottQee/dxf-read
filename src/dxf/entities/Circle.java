@@ -26,6 +26,19 @@ public class Circle extends Entity {
     public Circle( String layer) {
         super("CIRCLE", layer);
     }
+    public Circle(String[] point,String radius,String layer) throws Exception {
+        super("CIRCLE", layer);
+        if (point.length > 3 || point.length < 2){
+            throw new Exception("数据出错");
+        }
+        centerX = point[0]; centerY = point[1];
+        if (point.length == 3){
+            centerZ = point[2];
+        }else {
+            centerZ = "0.0";
+        }
+        this.radius = radius;
+    }
     private final String AcDbCircle = "AcDbCircle";
 
     public String getAcDbCircle() {

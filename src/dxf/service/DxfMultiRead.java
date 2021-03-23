@@ -135,7 +135,6 @@ public class DxfMultiRead {
         }while (!code_data[0].equals("0"));
         layerList.add(layer);
     }
-
     private void readLType() {
         LType lType = new LType();
         do {

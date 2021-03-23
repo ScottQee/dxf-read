@@ -23,6 +23,24 @@ public class Line extends Entity {
     public Line() {
         super("LINE","0");
     }
+    public Line(String[] point1,String[] point2,String layer) throws Exception {
+        super("LINE",layer);
+        if ((point1.length > 3 || point1.length < 2) || (point2.length > 3 || point2.length < 2)) {
+            throw new Exception("数据出错");
+        }
+        startX = point1[0];startY = point1[1];
+        endX = point2[0]; endY = point2[1];
+        if (point1.length == 3){
+            startZ = point1[2];
+        } else {
+            startZ = "0.0";
+        }
+        if (point2.length == 3){
+            endZ = point2[2];
+        } else {
+            endZ = "0.0";
+        }
+    }
     private final String AcDbLine = "AcDbLine";
 
     public String getAcDbLine() {

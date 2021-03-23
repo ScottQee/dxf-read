@@ -2,9 +2,12 @@ package dxf;
 
 
 import dxf.entities.*;
+import javafx.beans.DefaultProperty;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -25,6 +28,30 @@ public class Document {
     private Table appId;
     private DimStyleTable dimStyle;
     private Table block_record;
+
+    public Entities getEntities() {
+        return entities;
+    }
+
+    public void setEntities(Entities entities) {
+        this.entities = entities;
+    }
+
+    public Table getlTypes() {
+        return lTypes;
+    }
+
+    public void setlTypes(Table lTypes) {
+        this.lTypes = lTypes;
+    }
+
+    public Table getLayers() {
+        return layers;
+    }
+
+    public void setLayers(Table layers) {
+        this.layers = layers;
+    }
 
     /**
      * dxf输出样式模板
@@ -78,7 +105,7 @@ public class Document {
         LType continuous = new LType("Continuous");
         continuous.setDescription("Solid line");
         lTypes.addElement(continuous);
-        Layer zero = new Layer("0","1","Continuous");
+        Layer zero = new Layer("0","0","Continuous");
         layers.addElement(zero);
         AppID ACAD = new AppID("ACAD");
         appId.addElement(ACAD);
@@ -117,29 +144,105 @@ public class Document {
         s.append(entities.toDxfString());
         s.append(objects.toDxfString());
         s.append("0\nEOF\n");
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path),"GBK"));
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path), StandardCharsets.UTF_8));
         writer.write(s.toString());
         writer.flush();
         writer.close();
     }
-    public static void main(String[] args) throws IOException {
+
+    public void drawLine(double[] point1,double[] point2, String layer,String color) throws Exception {
+            Line line = new Line(parse(point1),parse(point2),layer);
+            line.setColor(color);
+            addEntity(line);
+    }
+    public void drawLine(double[] point1,double[] point2, String layer) throws Exception {
+        drawLine(point1,point2,layer,"0");
+    }
+    public void drawLine(double[] point1,double[] point2) throws Exception {
+        drawLine(point1,point2,"0","0");
+    }
+    public void drawCircle(double[] point, double radius, String layer,String color) throws Exception {
+        Circle circle = new Circle(parse(point), String.valueOf(radius), layer);
+        circle.setColor(color);
+        addEntity(circle);
+    }
+    public void drawCircle(double[] point, double radius,String layer) throws Exception {
+        drawCircle(point, radius, layer,"0");
+    }
+    public void drawCircle(double[] point, double radius) throws Exception {
+        drawCircle(point, radius,"0","0");
+    }
+    public void drawArc(double[] point, double radius, double start_Angle, double end_Angle,String layer, String color) throws Exception {
+        Arc arc = new Arc(parse(point), String.valueOf(radius), String.valueOf(start_Angle), String.valueOf(end_Angle), layer);
+        arc.setColor(color);
+        addEntity(arc);
+    }
+    public void drawPolylineS(List<String[]> points,String layer, String color){
+        LwPolyLine lwPolyLine = new LwPolyLine(layer);
+        lwPolyLine.setPoints(points);
+        lwPolyLine.setPointCount(String.valueOf(points.size()));
+        lwPolyLine.setColor(color);
+        addEntity(lwPolyLine);
+    }
+    public void drawPolyline(List<double[]> points,String layer,String color){
+        List<String[]> list = new ArrayList<>();
+        for (int i = 0 ; i < points.size();i++){
+            double[] doubles = points.get(i);
+            list.add(new String[]{String.valueOf(doubles[0]),String.valueOf(doubles[1])});
+        }
+        drawPolylineS(list,layer,color);
+    }
+    public void drawPolyline(List<double[]> points,String layer){
+        drawPolyline(points,layer,"0");
+    }
+    public void drawPolyline(List<double[]> points){
+        drawPolyline(points,"0","0");
+    }
+    public void drawPoint(double[] points,String layer,String color) throws Exception {
+        Point point = new Point(parse(points),layer);
+        point.setColor(color);
+        addEntity(point);
+    }
+    public void drawPoint(double[] points,String layer) throws Exception {
+       drawPoint(points, layer,"0");
+    }
+    public void drawPoint(double[] points) throws Exception {
+        drawPoint(points,"0","0");
+    }
+    public void drawText(String value, double[] point,double angle,String layer,String color) throws Exception {
+        Text text = new Text(parse(point), value, String.valueOf(angle), layer);
+        text.setColor(color);
+        addEntity(text);
+    }
+    public void drawText(String value, double[] point,double angle,String layer) throws Exception {
+        drawText(value, point, angle, layer,"0");
+    }
+    public void drawText(String value, double[] point,double angle) throws Exception {
+        drawText(value, point, angle,"0","0");
+    }
+    public void drawText(String value, double[] point) throws Exception {
+        drawText(value, point, 0.0,"0","0");
+    }
+    private static String[] parse(double[] points){
+        String[] result = new String[points.length];
+        for (int i = 0 ; i < points.length; i++){
+            result[i] = String.valueOf(points[i]);
+        }
+        return result;
+    }
+    public static void main(String[] args) throws Exception {
         Document document = new Document();
-        Text text = new Text("0");
-        text.setPointX("1.0");
-        text.setPointY("3.0");
-        text.setPointZ("0.0");
-        text.setValue("123456");
-        document.addEntity(text);
-        LwPolyLine lwPolyline = new LwPolyLine();
-        List<String[]> points = new ArrayList<>();
-        points.add(new String[]{"4.0","10.0"});
-        points.add(new String[]{"20.0","1.0"});
-        points.add(new String[]{"3.0","8.0"});
-        points.add(new String[]{"4.0","10.0"});
-        lwPolyline.setPointCount(String.valueOf(points.size()));
-        lwPolyline.setPoints(points);
-        document.addEntity(lwPolyline);
-        document.write("D:/new.dxf");
+        document.drawCircle(new double[]{1.2,2.3},4.2);
+        document.drawPoint(new double[]{1.0,3.0},"0",ACI_Color.Blue);
+        document.drawLine(new double[]{1.2,3.5},new double[]{4.4,6.1});
+        document.drawText("就服你123456",new double[]{1.0,1.0},90.0);
+        List list = new ArrayList();
+        list.add(new double[]{10.0,12.0});
+        list.add(new double[]{11.0,13.0});
+        list.add(new double[]{17.0,13.0});
+        list.add(new double[]{10.0,12.0});
+        document.drawPolyline(list);
+        document.write("D:/new1.dxf");
     }
 
 }

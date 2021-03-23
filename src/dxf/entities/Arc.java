@@ -28,6 +28,21 @@ public class Arc extends Entity {
     public Arc() {
         super("ARC","0");
     }
+    public Arc(String[] point, String radius, String start_Angle, String end_Angle, String layer) throws Exception {
+        super("ARC",layer);
+        if (point.length > 3 || point.length < 2){
+            throw new Exception("数据出错");
+        }
+        centerX = point[0]; centerY = point[1];
+        if (point.length == 3){
+            centerZ = point[2];
+        }else {
+            centerZ = "0.0";
+        }
+        this.radius = radius;
+        this.start_Angle = start_Angle;
+        this.end_Angle = end_Angle;
+    }
     private final String AcDbCircle = "AcDbCircle";
     private String centerX; //10
     private String centerY; //20

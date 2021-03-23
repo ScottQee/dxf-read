@@ -28,6 +28,20 @@ public class Text extends Entity {
     public Text() {
         super("TEXT","0");
     }
+    public Text(String[] point,String value,String angle,String layer) throws Exception {
+        super("TEXT",layer);
+        if (point.length > 3 || point.length < 2){
+            throw new Exception("数据出错");
+        }
+        pointX = point[0]; pointY = point[1];
+        if (point.length == 3){
+            pointZ = point[2];
+        }else {
+            pointZ = "0.0";
+        }
+        this.value = value;
+        this.angle = angle;
+    }
     private final String AcDbText = "AcDbText";
 
     public String getAcDbText() {
