@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="dxf">
-    <output-path>$PROJECT_DIR$/out/artifacts/dxf</output-path>
-    <root id="archive" name="dxf.jar">
-      <element id="module-output" name="dxf" />
-    </root>
-  </artifact>
-</component>
